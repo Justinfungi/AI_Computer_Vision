@@ -13,8 +13,8 @@
 ## Data
 1. Tiny image strategy:
 
-i) https://groups.csail.mit.edu/vision/TinyImages/
-ii) https://openreview.net/pdf?id=s-e2zaAlG3I
+  i) https://groups.csail.mit.edu/vision/TinyImages/
+  ii) https://openreview.net/pdf?id=s-e2zaAlG3I
 
 ## Traditional Methods
 
