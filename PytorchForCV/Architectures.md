@@ -59,3 +59,14 @@
 	        # Run the input through the ViT model
 	        x = self.model(x)
 	        return x
+#### Resnet18 (from torchvision.models)
+class ResNet(nn.Module):
+    def __init__(self, num_classes):
+        super(ResNet, self).__init__()
+        self.resnet = resnet18(pretrained=True)
+        self.fc = nn.Linear(512, num_classes) # replace 1000 with num_classes for custom classification
+
+    def forward(self, x):
+        x = self.resnet(x)
+        x = self.fc(x)
+        return x
