@@ -56,12 +56,12 @@
 
 ### Resize to tiny image
 
-  tiny_image_size = (16, 16)
-  train_data_tiny = list(map(lambda x: cv2.resize(x, tiny_image_size, interpolation=cv2.INTER_AREA).flatten(), train_data))
-  train_data_tiny = np.stack(train_data_tiny)
-  train_label = np.array(train_label)
-  test_data_tiny = list(map(lambda x: cv2.resize(x, tiny_image_size, interpolation=cv2.INTER_AREA).flatten(), test_data))
-  test_data_tiny = np.stack(test_data_tiny)
+    tiny_image_size = (16, 16)
+    train_data_tiny = list(map(lambda x: cv2.resize(x, tiny_image_size, interpolation=cv2.INTER_AREA).flatten(), train_data))
+    train_data_tiny = np.stack(train_data_tiny)
+    train_label = np.array(train_label)
+    test_data_tiny = list(map(lambda x: cv2.resize(x, tiny_image_size, interpolation=cv2.INTER_AREA).flatten(), test_data))
+    test_data_tiny = np.stack(test_data_tiny)
 
 
 # Pytorch implementation
@@ -82,81 +82,81 @@
       return self.x_data[index], self.y_data[index]
 
 #### Simple data
-  data_loader = data.DataLoader(dataset, batch_size=8, shuffle=True)
+    data_loader = data.DataLoader(dataset, batch_size=8, shuffle=True)
 
 #### Torch vision
-  from torchvision import datasets, transforms
+    from torchvision import datasets, transforms
 
-  # Prior the data should place as the same fromat as **Usually dataset config**
+    # Prior the data should place as the same fromat as **Usually dataset config**
 
-  # Prepare dataset
-  transform = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor()])
+    # Prepare dataset
+    transform = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor()])
 
-  training_dataset = datasets.ImageFolder(root='./Q3/data/train/', transform=transform)
-  testing_dataset = datasets.ImageFolder(root='./Q3/data/test/', transform=transform)
+    training_dataset = datasets.ImageFolder(root='./Q3/data/train/', transform=transform)
+    testing_dataset = datasets.ImageFolder(root='./Q3/data/test/', transform=transform)
 
-  training_dataloader = torch.utils.data.DataLoader(training_dataset, batch_size=32, shuffle=True)
-  testing_dataloader = torch.utils.data.DataLoader(testing_dataset, batch_size=32, shuffle=True)
+    training_dataloader = torch.utils.data.DataLoader(training_dataset, batch_size=32, shuffle=True)
+    testing_dataloader = torch.utils.data.DataLoader(testing_dataset, batch_size=32, shuffle=True)
 
-  # Shapes
-  training_dataset
-    Dataset ImageFolder
-    Number of datapoints: 1500
-    Root location: ./Q3/data/train/
-    StandardTransform
-    Transform: Compose(
-        Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
-        CenterCrop(size=(224, 224))
-        ToTensor())
+    # Shapes
+    training_dataset
+      Dataset ImageFolder
+      Number of datapoints: 1500
+      Root location: ./Q3/data/train/
+      StandardTransform
+      Transform: Compose(
+          Resize(size=256, interpolation=bilinear, max_size=None, antialias=None)
+          CenterCrop(size=(224, 224))
+          ToTensor())
 
-  training_dataset[0][0].shape # Input shape
-  training_dataset[0][1].shape # Label
+    training_dataset[0][0].shape # Input shape
+    training_dataset[0][1].shape # Label
 
 
 
 #### Training Process
-  def train_loop(dataloader, model, loss_fn, optimizer):
-    size = len(dataloader.dataset)
+    def train_loop(dataloader, model, loss_fn, optimizer):
+      size = len(dataloader.dataset)
 
-    for batch, (X, y) in enumerate(dataloader):
-      # Compute prediction and loss
-      pred = model(X)
-      loss = loss_fn(pred, y)
+      for batch, (X, y) in enumerate(dataloader):
+        # Compute prediction and loss
+        pred = model(X)
+        loss = loss_fn(pred, y)
 
-      # Backpropagation
-      optimizer.zero_grad()
-      loss.backward()
-      optimizer.step()
+        # Backpropagation
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
 
-      # if batch % 100 == 0:
-      # loss, current = loss.item(), batch * len(X)
-      # print(f"loss: {loss:>7f} [{current:>5d}/{size:>5d}]")
+        # if batch % 100 == 0:
+        # loss, current = loss.item(), batch * len(X)
+        # print(f"loss: {loss:>7f} [{current:>5d}/{size:>5d}]")
 
 #### Testing Process
-  def test_loop(dataloader, model, loss_fn):
-    size = len(dataloader.dataset)
-    num_batches = len(dataloader)
-    test_loss, correct = 0, 0
+    def test_loop(dataloader, model, loss_fn):
+      size = len(dataloader.dataset)
+      num_batches = len(dataloader)
+      test_loss, correct = 0, 0
 
-    with torch.no_grad():
-      for X, y in dataloader:
-        pred = model(X)
-        test_loss += loss_fn(pred, y).item()
-        correct += (pred.argmax(1) == y).type(torch.float).sum().item()
-    test_loss /= num_batches
-    correct /= size
-    print(f"Test: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n"
+      with torch.no_grad():
+        for X, y in dataloader:
+          pred = model(X)
+          test_loss += loss_fn(pred, y).item()
+          correct += (pred.argmax(1) == y).type(torch.float).sum().item()
+      test_loss /= num_batches
+      correct /= size
+      print(f"Test: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n"
 
 
 #### Main program
 
-  model = MLP()
-  loss_fn = nn.CrossEntropyLoss()
-  optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
-  epochs = 10
+    model = MLP()
+    loss_fn = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, betas=(0.9, 0.999))
+    epochs = 10
 
-  for t in range(epochs):
-    print(f"Epoch {t+1}\n")
-    train_loop(train_dataloader, model, loss_fn, optimizer)
-    test_loop(test_dataloader, model, loss_fn)
-  print("Done!")		
+    for t in range(epochs):
+      print(f"Epoch {t+1}\n")
+      train_loop(train_dataloader, model, loss_fn, optimizer)
+      test_loop(test_dataloader, model, loss_fn)
+    print("Done!")		
