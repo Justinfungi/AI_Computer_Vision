@@ -27,6 +27,12 @@
 
 1. DreamFusion:
 
+    Nerf + Stable Diffusion + DMTet
+    1 hour for 1 case
+
     https://dreamfusion3d.github.io
     They didn't provide the official code, but there is a reliable third-party reproduction you can leverage:
     https://github.com/ashawkey/stable-dreamfusion
+    
+    Personal Ammendment
+    https://github.com/Justinfungi/stable-dreamfusion/tree/HKUproject
