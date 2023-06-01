@@ -14,7 +14,6 @@
 
 
   ### Data Preprocessing
-
   1. Tiny image strategy:
 
     i) https://groups.csail.mit.edu/vision/TinyImages/
@@ -29,6 +28,7 @@
 
 <details>
   <summary > Expand </summary>
+  
   ### Stitching
 
       SIFT and Harris corner detection
