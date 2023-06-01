@@ -84,7 +84,7 @@
   | Training  | !python train.py --workers 8 --device 0 --batch-size 32 --data Customization/data.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights 'Customization/yolov7_training.pt' --name yolov7-custom --hyp data/hyp.scratch.custom.yaml  |
   | Explanation | --data Customization/data.yaml: change to the folder you want, data config file. <br> |
   | Customization/data.yaml | Attach below |
-  | Error1 | torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 200.00 MiB (GPU 0; 10.76 GiB total capacity; 9.63 GiB already allocated; 36.44 MiB free; 9.75 GiB reserved in total by PyTorch) |
+  | Error1 | torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 200.00 MiB (GPU 0; 10.76 GiB total capacity; 9.63 GiB already allocated; 36.44 MiB free; 9.75 GiB reserved in total by PyTorch) <br> Reduce the `batch_size`, Lower the Precision, Do what the error says, Clear cache, Modify the Model/Training |
 
   ``` bash
   train: Customization/train/images #Path
