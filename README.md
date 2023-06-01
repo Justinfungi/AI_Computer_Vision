@@ -8,7 +8,7 @@
 <details>
   <summary > Expand </summary>
 
-  ### coco
+  ## coco
   1. https://cocodataset.org/#download
   2. https://github.com/cocodataset/cocoapi.git
 
@@ -29,7 +29,7 @@
 
 <details>
   <summary > Expand </summary>
-  1. Stitching
+  ### Stitching
 
       SIFT and Harris corner detection
       https://www.cs.tau.ac.il/~turkel/imagepapers/comparison_sift-harris-corner.pdf
@@ -77,6 +77,7 @@
 
   ## Yolov7
   1. Fintuning - A detailed workflow (For starter)
+
   | First Header  | Second Header |
   | ------------- | ------------- |
   | Data  | Roboflow  (Suceess, easy, with UI, folder config)  |
