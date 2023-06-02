@@ -80,7 +80,7 @@
 
   | First Header  | Second Header |
   | ------------- | ------------- |
-  | Data  | Roboflow  (Suceess, easy, with UI, folder config)  |
+  | Data  | Roboflow  (Suceess, easy, with UI, folder config); LabelImg Lib  |
   | Training  | !python train.py --workers 8 --device 0 --batch-size 32 --data Customization/data.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights 'Customization/yolov7_training.pt' --name yolov7-custom --hyp data/hyp.scratch.custom.yaml  |
   | Explanation | --data Customization/data.yaml: change to the folder you want, data config file. <br> |
   | Customization/data.yaml | Attach below |
