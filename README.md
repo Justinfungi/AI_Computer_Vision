@@ -86,6 +86,8 @@
   | Customization/data.yaml | Attach below |
   | Error1 | torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 200.00 MiB (GPU 0; 10.76 GiB total capacity; 9.63 GiB already allocated; 36.44 MiB free; 9.75 GiB reserved in total by PyTorch) <br><br> Reduce the `batch_size`, Lower the Precision, Do what the error says, Clear cache, Modify the Model/Training |
   | Error2 | Envs <br><br> Dont support torch>=1.7.0,!=1.12.0 torchvision>=0.8.1,!=0.13.0 |
+  | Result | Optimizer stripped from runs/train/yolov7-custom14/weights/last.pt, 74.8MB <br><br> python detect.py --weights runs/train/yolov7-cus4/weights/best.pt --conf 0.25 --img-size 640 --source Test3.png |
+  | Issue 1 Similar people are having same ID | Solution by chatgpt |
 
   ``` bash
   train: Customization/train/images #Path
@@ -94,5 +96,8 @@
   names: ['Net', 'Player1', 'Player2', 'Tennis Ball'] # lable name
 
   ```
+  ![image](https://github.com/Justinfungi/AI_Computer_Vision/assets/79019929/8f5ff4fb-7417-46b5-b647-1ea9c207cb7f)
+  ![image](https://github.com/Justinfungi/AI_Computer_Vision/assets/79019929/852698a0-3f33-4af7-b43c-eb934c080a00)
+
 
 </details>
