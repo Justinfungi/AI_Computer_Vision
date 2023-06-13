@@ -28,7 +28,7 @@
 
 <details>
   <summary > Expand </summary>
-  
+
   ### Stitching
 
       SIFT and Harris corner detection
@@ -36,6 +36,25 @@
 
   ```bash
   ```
+
+  ### Detection:
+
+      Line Detection:
+
+      Hough Transform (HT)
+      APAI3010
+      
+      Progressive Probabilistic Hough Transform (PPHT):
+      It is an improvement over the traditional Hough Transform and works faster because it examines a randomly chosen subset of points with every iteration.
+
+      Randomized Hough Transform (RHT):
+      This algorithm randomly selects points from an image and constructs line segments, and therefore can reduce computation time while still maintaining accuracy.
+
+      Radon Transform:
+      This transform is designed to detect straight lines within an image and can be used on binary images to increase the robustness of Hough transform. It transforms an image into a parameter space where the presence of a line is easier to detect.
+
+      Line Segment Detector (LSD):
+      It is an edge-based line detection algorithm that can detect multiple straight lines within an image in real-time.
 
 </details>
 
@@ -67,7 +86,9 @@
 
 
 
-# Detection
+# Objection Detection
+
+Learderboard: https://paperswithcode.com/sota/real-time-object-detection-on-coco?p=yolov7-trainable-bag-of-freebies-sets-new
 
 <details>
   <summary > Expand </summary>
@@ -80,14 +101,15 @@
 
   | First Header  | Second Header |
   | ------------- | ------------- |
-  | Data  | Roboflow  (Suceess, easy, with UI, folder config); LabelImg Lib  |
+  | Data  | Roboflow  (Suceess, easy, with UI, folder config); LabelImg Lib ; |
   | Training  | !python train.py --workers 8 --device 0 --batch-size 32 --data Customization/data.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights 'Customization/yolov7_training.pt' --name yolov7-custom --hyp data/hyp.scratch.custom.yaml  |
   | Explanation | --data Customization/data.yaml: change to the folder you want, data config file. <br> |
   | Customization/data.yaml | Attach below |
   | Error1 | torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 200.00 MiB (GPU 0; 10.76 GiB total capacity; 9.63 GiB already allocated; 36.44 MiB free; 9.75 GiB reserved in total by PyTorch) <br><br> Reduce the `batch_size`, Lower the Precision, Do what the error says, Clear cache, Modify the Model/Training |
   | Error2 | Envs <br><br> Dont support torch>=1.7.0,!=1.12.0 torchvision>=0.8.1,!=0.13.0 |
   | Result | Optimizer stripped from runs/train/yolov7-custom14/weights/last.pt, 74.8MB <br><br> python detect.py --weights runs/train/yolov7-cus4/weights/best.pt --conf 0.25 --img-size 640 --source Test3.png |
-  | Issue 1 Similar people are having same ID | Solution by chatgpt |
+  | Issue 1 Similar people are having same ID | Solution by chatgpt / Tracker: https://github.com/JackWoo0831/Yolov7-tracker |
+  | Issue 2 | Deepsort fail to id the object consistently in different scene |
 
   ``` bash
   train: Customization/train/images #Path
