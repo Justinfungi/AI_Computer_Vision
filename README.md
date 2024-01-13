@@ -58,7 +58,14 @@
 
 </details>
 
-
+# Text to img
+<details>
+  <summary > Expand </summary>
+  1. Stable Diffusion
+  2. Lora / Dreambooth:
+     low rank finetuning methods
+     
+</details>
 
 # Text to 3D
 
